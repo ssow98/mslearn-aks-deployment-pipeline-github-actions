@@ -10,7 +10,10 @@ spec:
     - host: contoso-{{ default "staging" .Release.Namespace }}.{{ .Values.dns.name }}
       http:
         paths:
-          - backend:
-              serviceName: contoso-website
-              servicePort: http
-            path: /
+          path: /
+          pathType: Prefix
+          backend:
+              service:
+                name: contoso-website
+                port: 
+                  number: 80
